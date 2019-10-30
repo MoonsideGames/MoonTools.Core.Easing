@@ -153,6 +153,62 @@ namespace Test
 
                 CheckFloatArguments(Easing.OutInCubic, Easing.OutInCubic);
             }
+
+            [Test]
+            public void InQuartic()
+            {
+                Easing.InQuart(0.25f).Should().Be(0.00390625f);
+                Easing.InQuart(0.5f).Should().Be(0.0625f);
+                Easing.InQuart(0.75f).Should().Be(0.31640625f);
+
+                Easing.InQuart(3, 2, 6).Should().Be(2.015625f);
+                Easing.InQuart(4, 2, 6).Should().Be(2.25f);
+                Easing.InQuart(5, 2, 6).Should().Be(3.265625f);
+
+                CheckFloatArguments(Easing.InQuart, Easing.InQuart);
+            }
+
+            [Test]
+            public void OutQuartic()
+            {
+                Easing.OutQuart(0.25f).Should().Be(0.68359375f);
+                Easing.OutQuart(0.5f).Should().Be(0.9375f);
+                Easing.OutQuart(0.75f).Should().Be(0.99609375f);
+
+                Easing.OutQuart(3, 2, 6).Should().Be(4.734375f);
+                Easing.OutQuart(4, 2, 6).Should().Be(5.75f);
+                Easing.OutQuart(5, 2, 6).Should().Be(5.984375f);
+
+                CheckFloatArguments(Easing.OutQuart, Easing.OutQuart);
+            }
+
+            [Test]
+            public void InOutQuartic()
+            {
+                Easing.InOutQuart(0.25f).Should().Be(0.03125f);
+                Easing.InOutQuart(0.5f).Should().Be(0.5f);
+                Easing.InOutQuart(0.75f).Should().Be(0.96875f);
+
+                Easing.InOutQuart(3, 2, 6).Should().Be(2.125f);
+                Easing.InOutQuart(4, 2, 6).Should().Be(4f);
+                Easing.InOutQuart(5, 2, 6).Should().Be(5.875f);
+
+                CheckFloatArguments(Easing.InOutQuart, Easing.InOutQuart);
+            }
+
+            [Test]
+            public void OutInQuartic()
+            {
+                Easing.OutInQuart(0.25f).Should().Be(0.46875f);
+                Easing.OutInQuart(0.5f).Should().Be(0.5f);
+                Easing.OutInQuart(0.75f).Should().Be(0.53125f);
+
+                Easing.OutInQuart(3, 2, 6).Should().Be(3.875f);
+                Easing.OutInQuart(4, 2, 6).Should().Be(4f);
+                Easing.OutInQuart(5, 2, 6).Should().Be(4.125f);
+
+                CheckFloatArguments(Easing.OutInQuart, Easing.OutInQuart);
+            }
         }
 
         public class DoubleTests
@@ -281,6 +337,62 @@ namespace Test
                 Easing.OutInCubic(5.0, 2, 6).Should().Be(4.25);
 
                 CheckDoubleArguments(Easing.OutInCubic, Easing.OutInCubic);
+            }
+
+            [Test]
+            public void InQuartic()
+            {
+                Easing.InQuart(0.25).Should().Be(0.00390625);
+                Easing.InQuart(0.5).Should().Be(0.0625);
+                Easing.InQuart(0.75).Should().Be(0.31640625);
+
+                Easing.InQuart(3.0, 2, 6).Should().Be(2.015625);
+                Easing.InQuart(4.0, 2, 6).Should().Be(2.25);
+                Easing.InQuart(5.0, 2, 6).Should().Be(3.265625);
+
+                CheckDoubleArguments(Easing.InQuart, Easing.InQuart);
+            }
+
+            [Test]
+            public void OutQuartic()
+            {
+                Easing.OutQuart(0.25).Should().Be(0.68359375);
+                Easing.OutQuart(0.5).Should().Be(0.9375);
+                Easing.OutQuart(0.75).Should().Be(0.99609375);
+
+                Easing.OutQuart(3.0, 2, 6).Should().Be(4.734375);
+                Easing.OutQuart(4.0, 2, 6).Should().Be(5.75);
+                Easing.OutQuart(5.0, 2, 6).Should().Be(5.984375);
+
+                CheckDoubleArguments(Easing.OutQuart, Easing.OutQuart);
+            }
+
+            [Test]
+            public void InOutQuartic()
+            {
+                Easing.InOutQuart(0.25).Should().Be(0.03125);
+                Easing.InOutQuart(0.5).Should().Be(0.5);
+                Easing.InOutQuart(0.75).Should().Be(0.96875);
+
+                Easing.InOutQuart(3.0, 2, 6).Should().Be(2.125);
+                Easing.InOutQuart(4.0, 2, 6).Should().Be(4);
+                Easing.InOutQuart(5.0, 2, 6).Should().Be(5.875);
+
+                CheckDoubleArguments(Easing.InOutQuart, Easing.InOutQuart);
+            }
+
+            [Test]
+            public void OutInQuartic()
+            {
+                Easing.OutInQuart(0.25).Should().Be(0.46875);
+                Easing.OutInQuart(0.5).Should().Be(0.5);
+                Easing.OutInQuart(0.75).Should().Be(0.53125);
+
+                Easing.OutInQuart(3.0, 2, 6).Should().Be(3.875);
+                Easing.OutInQuart(4.0, 2, 6).Should().Be(4);
+                Easing.OutInQuart(5.0, 2, 6).Should().Be(4.125);
+
+                CheckFloatArguments(Easing.OutInQuart, Easing.OutInQuart);
             }
         }
     }

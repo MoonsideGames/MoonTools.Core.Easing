@@ -274,5 +274,119 @@ namespace MoonTools.Core.Easing
                 return InCubic((t * 2) - d, b + c / 2, c / 2, d);
             }
         }
+
+        // IN QUARTIC
+
+        public static float InQuart(float t) => NormalizedTime(InQuart, t);
+        public static float InQuart(float time, float start, float end) => TimeRange(InQuart, time, start, end);
+
+        public static float InQuart(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t * t) + b;
+        }
+
+        public static double InQuart(double t) => NormalizedTime(InQuart, t);
+        public static double InQuart(double time, double start, double end) => TimeRange(InQuart, time, start, end);
+
+        public static double InQuart(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t * t) + b;
+        }
+
+        // OUT QUARTIC
+
+        public static float OutQuart(float t) => NormalizedTime(OutQuart, t);
+        public static float OutQuart(float time, float start, float end) => TimeRange(OutQuart, time, start, end);
+
+        public static float OutQuart(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return -c * ((t * t * t * t) - 1) + b;
+        }
+
+        public static double OutQuart(double t) => NormalizedTime(OutQuart, t);
+        public static double OutQuart(double time, double start, double end) => TimeRange(OutQuart, time, start, end);
+
+        public static double OutQuart(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return -c * ((t * t * t * t) - 1) + b;
+        }
+
+        // IN OUT QUARTIC
+
+        public static float InOutQuart(float t) => NormalizedTime(InOutQuart, t);
+        public static float InOutQuart(float time, float start, float end) => TimeRange(InOutQuart, time, start, end);
+
+        public static float InOutQuart(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * (t * t * t * t) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return -c / 2 * ((t * t * t * t) - 2) + b;
+            }
+        }
+
+        public static double InOutQuart(double t) => NormalizedTime(InOutQuart, t);
+        public static double InOutQuart(double time, double start, double end) => TimeRange(InOutQuart, time, start, end);
+
+        public static double InOutQuart(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * (t * t * t * t) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return -c / 2 * ((t * t * t * t) - 2) + b;
+            }
+        }
+
+        // OUT IN QUARTIC
+
+        public static float OutInQuart(float t) => NormalizedTime(OutInQuart, t);
+        public static float OutInQuart(float time, float start, float end) => TimeRange(OutInQuart, time, start, end);
+
+        public static float OutInQuart(float t, float b, float c, float d)
+        {
+            if (t < d / 2)
+            {
+                return OutQuart(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuart((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
+        public static double OutInQuart(double t) => NormalizedTime(OutInQuart, t);
+        public static double OutInQuart(double time, double start, double end) => TimeRange(OutInQuart, time, start, end);
+
+        public static double OutInQuart(double t, double b, double c, double d)
+        {
+            if (t < d / 2)
+            {
+                return OutQuart(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuart((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
     }
 }
