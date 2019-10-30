@@ -122,6 +122,36 @@ namespace Test
                 Easing.OutCubic(3, 2, 6).Should().Be(4.3125f);
                 Easing.OutCubic(4, 2, 6).Should().Be(5.5f);
                 Easing.OutCubic(5, 2, 6).Should().Be(5.9375f);
+
+                CheckFloatArguments(Easing.OutCubic, Easing.OutCubic);
+            }
+
+            [Test]
+            public void InOutCubic()
+            {
+                Easing.InOutCubic(0.25f).Should().Be(0.0625f);
+                Easing.InOutCubic(0.5f).Should().Be(0.5f);
+                Easing.InOutCubic(0.75f).Should().Be(0.9375f);
+
+                Easing.InOutCubic(3, 2, 6).Should().Be(2.25f);
+                Easing.InOutCubic(4, 2, 6).Should().Be(4f);
+                Easing.InOutCubic(5, 2, 6).Should().Be(5.75f);
+
+                CheckFloatArguments(Easing.InOutCubic, Easing.InOutCubic);
+            }
+
+            [Test]
+            public void OutInCubic()
+            {
+                Easing.OutInCubic(0.25f).Should().Be(0.4375f);
+                Easing.OutInCubic(0.5f).Should().Be(0.5f);
+                Easing.OutInCubic(0.75f).Should().Be(0.5625f);
+
+                Easing.OutInCubic(3, 2, 6).Should().Be(3.75f);
+                Easing.OutInCubic(4, 2, 6).Should().Be(4f);
+                Easing.OutInCubic(5, 2, 6).Should().Be(4.25f);
+
+                CheckFloatArguments(Easing.OutInCubic, Easing.OutInCubic);
             }
         }
 
@@ -223,6 +253,34 @@ namespace Test
                 Easing.OutCubic(5.0, 2, 6).Should().Be(5.9375);
 
                 CheckDoubleArguments(Easing.OutCubic, Easing.OutCubic);
+            }
+
+            [Test]
+            public void InOutCubic()
+            {
+                Easing.InOutCubic(0.25).Should().Be(0.0625);
+                Easing.InOutCubic(0.5).Should().Be(0.5);
+                Easing.InOutCubic(0.75).Should().Be(0.9375);
+
+                Easing.InOutCubic(3.0, 2, 6).Should().Be(2.25);
+                Easing.InOutCubic(4.0, 2, 6).Should().Be(4);
+                Easing.InOutCubic(5.0, 2, 6).Should().Be(5.75);
+
+                CheckDoubleArguments(Easing.InOutCubic, Easing.InOutCubic);
+            }
+
+            [Test]
+            public void OutInCubic()
+            {
+                Easing.OutInCubic(0.25).Should().Be(0.4375);
+                Easing.OutInCubic(0.5).Should().Be(0.5);
+                Easing.OutInCubic(0.75).Should().Be(0.5625);
+
+                Easing.OutInCubic(3.0, 2, 6).Should().Be(3.75);
+                Easing.OutInCubic(4.0, 2, 6).Should().Be(4);
+                Easing.OutInCubic(5.0, 2, 6).Should().Be(4.25);
+
+                CheckDoubleArguments(Easing.OutInCubic, Easing.OutInCubic);
             }
         }
     }

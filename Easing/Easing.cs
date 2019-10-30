@@ -202,5 +202,77 @@ namespace MoonTools.Core.Easing
             t = t / d - 1;
             return c * (t * t * t + 1) + b;
         }
+
+        // IN OUT CUBIC
+
+        public static float InOutCubic(float t) => NormalizedTime(InOutCubic, t);
+        public static float InOutCubic(float time, float start, float end) => TimeRange(InOutCubic, time, start, end);
+
+        public static float InOutCubic(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * t * t * t + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+        }
+
+        // IN OUT CUBIC
+
+        public static double InOutCubic(double t) => NormalizedTime(InOutCubic, t);
+        public static double InOutCubic(double time, double start, double end) => TimeRange(InOutCubic, time, start, end);
+
+        public static double InOutCubic(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * t * t * t + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+        }
+
+        // OUT IN CUBIC
+
+        public static float OutInCubic(float t) => NormalizedTime(OutInCubic, t);
+        public static float OutInCubic(float time, float start, float end) => TimeRange(OutInCubic, time, start, end);
+
+        public static float OutInCubic(float t, float b, float c, float d)
+        {
+            if (t < d / 2)
+            {
+                return OutCubic(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InCubic((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
+        public static double OutInCubic(double t) => NormalizedTime(OutInCubic, t);
+        public static double OutInCubic(double time, double start, double end) => TimeRange(OutInCubic, time, start, end);
+
+        public static double OutInCubic(double t, double b, double c, double d)
+        {
+            if (t < d / 2)
+            {
+                return OutCubic(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InCubic((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
     }
 }
