@@ -158,5 +158,49 @@ namespace MoonTools.Core.Easing
                 return InQuad((t * 2) - d, b + c / 2, c / 2, d);
             }
         }
+
+        // IN CUBIC
+
+        public static float InCubic(float t) => NormalizedTime(InCubic, t);
+        public static float InCubic(float time, float start, float end) => TimeRange(InCubic, time, start, end);
+
+        public static float InCubic(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t) + b;
+        }
+
+        public static double InCubic(double t) => NormalizedTime(InCubic, t);
+        public static double InCubic(double time, double start, double end) => TimeRange(InCubic, time, start, end);
+
+        public static double InCubic(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t) + b;
+        }
+
+        // OUT CUBIC
+
+        public static float OutCubic(float t) => NormalizedTime(OutCubic, t);
+        public static float OutCubic(float time, float start, float end) => TimeRange(OutCubic, time, start, end);
+
+        public static float OutCubic(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * (t * t * t + 1) + b;
+        }
+
+        public static double OutCubic(double t) => NormalizedTime(OutCubic, t);
+        public static double OutCubic(double time, double start, double end) => TimeRange(OutCubic, time, start, end);
+
+        public static double OutCubic(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * (t * t * t + 1) + b;
+        }
     }
 }

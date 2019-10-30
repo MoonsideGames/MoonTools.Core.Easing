@@ -138,6 +138,9 @@ namespace Test
             Easing.OutInQuad(0.5).Should().Be(0.5);
             Easing.OutInQuad(0.75).Should().Be(0.625);
 
+            invalidTime = () => Easing.OutInQuad(1.5);
+            invalidTime.Should().Throw<ArgumentException>();
+
             Easing.OutInQuad(3, 2, 6).Should().Be(3.5f);
             Easing.OutInQuad(4, 2, 6).Should().Be(4f);
             Easing.OutInQuad(5, 2, 6).Should().Be(4.5f);
@@ -148,6 +151,64 @@ namespace Test
             Easing.OutInQuad(3.0, 2, 6).Should().Be(3.5);
             Easing.OutInQuad(4.0, 2, 6).Should().Be(4);
             Easing.OutInQuad(5.0, 2, 6).Should().Be(4.5);
+        }
+
+        [Test]
+        public void InCubic()
+        {
+            Easing.InCubic(0.25f).Should().Be(0.015625f);
+            Easing.InCubic(0.5f).Should().Be(0.125f);
+            Easing.InCubic(0.75f).Should().Be(0.421875f);
+
+            Action invalidTime = () => Easing.InCubic(1.5f);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.InCubic(0.25).Should().Be(0.015625);
+            Easing.InCubic(0.5).Should().Be(0.125);
+            Easing.InCubic(0.75).Should().Be(0.421875);
+
+            invalidTime = () => Easing.InCubic(1.5);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.InCubic(3, 2, 6).Should().Be(2.0625f);
+            Easing.InCubic(4, 2, 6).Should().Be(2.5f);
+            Easing.InCubic(5, 2, 6).Should().Be(3.6875f);
+
+            invalidTime = () => Easing.InCubic(7, 2, 6);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.InCubic(3.0, 2, 6).Should().Be(2.0625);
+            Easing.InCubic(4.0, 2, 6).Should().Be(2.5);
+            Easing.InCubic(5.0, 2, 6).Should().Be(3.6875);
+        }
+
+        [Test]
+        public void OutCubic()
+        {
+            Easing.OutCubic(0.25f).Should().Be(0.578125f);
+            Easing.OutCubic(0.5f).Should().Be(0.875f);
+            Easing.OutCubic(0.75f).Should().Be(0.984375f);
+
+            Action invalidTime = () => Easing.OutCubic(1.5);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.OutCubic(0.25).Should().Be(0.578125);
+            Easing.OutCubic(0.5).Should().Be(0.875);
+            Easing.OutCubic(0.75).Should().Be(0.984375);
+
+            invalidTime = () => Easing.OutCubic(1.5);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.OutCubic(3, 2, 6).Should().Be(4.3125f);
+            Easing.OutCubic(4, 2, 6).Should().Be(5.5f);
+            Easing.OutCubic(5, 2, 6).Should().Be(5.9375f);
+
+            invalidTime = () => Easing.OutCubic(7, 2, 6);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.OutCubic(3.0, 2, 6).Should().Be(4.3125);
+            Easing.OutCubic(4.0, 2, 6).Should().Be(5.5);
+            Easing.OutCubic(5.0, 2, 6).Should().Be(5.9375);
         }
     }
 }
