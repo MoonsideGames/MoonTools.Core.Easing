@@ -124,5 +124,39 @@ namespace MoonTools.Core.Easing
                 return -c / 2 * ((t - 1) * (t - 3) - 1) + b;
             }
         }
+
+        // OUT IN QUAD
+
+        public static float OutInQuad(float t) => NormalizedTime(OutInQuad, t);
+        public static float OutInQuad(float time, float start, float end) => TimeRange(OutInQuad, time, start, end);
+
+        public static float OutInQuad(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            if (t < d / 2)
+            {
+                return OutQuad(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuad((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
+        public static double OutInQuad(double t) => NormalizedTime(OutInQuad, t);
+        public static double OutInQuad(double time, double start, double end) => TimeRange(OutInQuad, time, start, end);
+
+        public static double OutInQuad(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            if (t < d / 2)
+            {
+                return OutQuad(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuad((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
     }
 }

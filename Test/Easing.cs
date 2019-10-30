@@ -123,5 +123,31 @@ namespace Test
             Easing.InOutQuad(4.0, 2, 6).Should().Be(4);
             Easing.InOutQuad(5.0, 2, 6).Should().Be(5.5);
         }
+
+        [Test]
+        public void OutInQuad()
+        {
+            Easing.OutInQuad(0.25f).Should().Be(0.375f);
+            Easing.OutInQuad(0.5f).Should().Be(0.5f);
+            Easing.OutInQuad(0.75f).Should().Be(0.625f);
+
+            Action invalidTime = () => Easing.OutInQuad(1.5f);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.OutInQuad(0.25).Should().Be(0.375);
+            Easing.OutInQuad(0.5).Should().Be(0.5);
+            Easing.OutInQuad(0.75).Should().Be(0.625);
+
+            Easing.OutInQuad(3, 2, 6).Should().Be(3.5f);
+            Easing.OutInQuad(4, 2, 6).Should().Be(4f);
+            Easing.OutInQuad(5, 2, 6).Should().Be(4.5f);
+
+            invalidTime = () => Easing.OutInQuad(7, 2, 6);
+            invalidTime.Should().Throw<ArgumentException>();
+
+            Easing.OutInQuad(3.0, 2, 6).Should().Be(3.5);
+            Easing.OutInQuad(4.0, 2, 6).Should().Be(4);
+            Easing.OutInQuad(5.0, 2, 6).Should().Be(4.5);
+        }
     }
 }
