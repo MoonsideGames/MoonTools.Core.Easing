@@ -388,5 +388,121 @@ namespace MoonTools.Core.Easing
                 return InQuart((t * 2) - d, b + c / 2, c / 2, d);
             }
         }
+
+        // IN QUINTIC
+
+        public static float InQuint(float t) => NormalizedTime(InQuint, t);
+        public static float InQuint(float time, float start, float end) => TimeRange(InQuint, time, start, end);
+
+        public static float InQuint(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t * t * t) + b;
+        }
+
+        public static double InQuint(double t) => NormalizedTime(InQuint, t);
+        public static double InQuint(double time, double start, double end) => TimeRange(InQuint, time, start, end);
+
+        public static double InQuint(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * (t * t * t * t * t) + b;
+        }
+
+        // OUT QUINTIC
+
+        public static float OutQuint(float t) => NormalizedTime(OutQuint, t);
+        public static float OutQuint(float time, float start, float end) => TimeRange(OutQuint, time, start, end);
+
+        public static float OutQuint(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * ((t * t * t * t * t) + 1) + b;
+        }
+
+        public static double OutQuint(double t) => NormalizedTime(OutQuint, t);
+        public static double OutQuint(double time, double start, double end) => TimeRange(OutQuint, time, start, end);
+
+        public static double OutQuint(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * ((t * t * t * t * t) + 1) + b;
+        }
+
+        // IN OUT QUINTIC
+
+        public static float InOutQuint(float t) => NormalizedTime(InOutQuint, t);
+        public static float InOutQuint(float time, float start, float end) => TimeRange(InOutQuint, time, start, end);
+
+        public static float InOutQuint(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * (t * t * t * t * t) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * ((t * t * t * t * t) + 2) + b;
+            }
+        }
+
+        public static double InOutQuint(double t) => NormalizedTime(InOutQuint, t);
+        public static double InOutQuint(double time, double start, double end) => TimeRange(InOutQuint, time, start, end);
+
+        public static double InOutQuint(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * (t * t * t * t * t) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * ((t * t * t * t * t) + 2) + b;
+            }
+        }
+
+        // OUT IN QUINTIC
+
+        public static float OutInQuint(float t) => NormalizedTime(OutInQuint, t);
+        public static float OutInQuint(float time, float start, float end) => TimeRange(OutInQuint, time, start, end);
+
+        public static float OutInQuint(float t, float b, float c, float d)
+        {
+            CheckTime(t, d);
+            if (t < d / 2)
+            {
+                return OutQuint(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuint((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
+        public static double OutInQuint(double t) => NormalizedTime(OutInQuint, t);
+        public static double OutInQuint(double time, double start, double end) => TimeRange(OutInQuint, time, start, end);
+
+        public static double OutInQuint(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            if (t < d / 2)
+            {
+                return OutQuint(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InQuint((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
     }
 }
