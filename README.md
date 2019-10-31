@@ -23,6 +23,7 @@ Easing.InQuad(0.75f); // => 0.5625f
 Easing.InOutSine(3.5, 2, 6); // => 3.2346331352698
 
 // Move within an arbitrary number range based on time.
+// (time, start, delta, duration)
 Easing.OutQuart(2, 10, 100, 4); // => 103.75
 ```
 
