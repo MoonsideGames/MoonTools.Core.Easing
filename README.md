@@ -1,5 +1,8 @@
 # MoonTools.Core.Easing
 
+[![NuGet Badge](https://buildstats.info/nuget/MoonTools.Core.Easing)](https://www.nuget.org/packages/MoonTools.Core.Easing/)
+[![CircleCI](https://circleci.com/gh/MoonsideGames/MoonTools.Core.Easing.svg?style=svg)](https://circleci.com/gh/MoonsideGames/MoonTools.Core.Easing)
+
 Easing functions for .NET Core
 
 ## Reference
