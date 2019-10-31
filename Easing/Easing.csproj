@@ -1,7 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Version>1.0.0</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>.NET Core Easing Functions</Description>
+    <PackageId>MoonTools.Core.Easing</PackageId>
+    <RootNamespace>MoonTools.Core.Easing</RootNamespace>
+    <Company>Moonside Games</Company>
+    <Authors>Evan Hemsley</Authors>
+    <Copyright>Evan Hemsley 2019</Copyright>
+    <Product>MoonTools.Core.Easing</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>MoonTools.Core.Easing</AssemblyName>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/MoonsideGames/MoonTools.Core.Easing</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
