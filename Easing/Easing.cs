@@ -822,5 +822,70 @@ namespace MoonTools.Core.Easing
                 return InBack((t * 2) - d, b + c / 2, c / 2, d, s);
             }
         }
+
+        // OUT BOUNCE
+
+        public static double OutBounce(double t) => NormalizedTime(OutBounce, t);
+        public static double OutBounce(double time, double start, double end) => TimeRange(OutBounce, time, start, end);
+
+        public static double OutBounce(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            if (t < 1 / 2.75)
+            {
+                return c * (7.5625 * t * t) + b;
+            }
+            else if (t < 2 / 2.75)
+            {
+                t = t - (1.5 / 2.75);
+                return c * (7.5625 * t * t + 0.75) + b;
+            }
+            else if (t < 2.5 / 2.75)
+            {
+                t = t - (2.25 / 2.75);
+                return c * (7.5625 * t * t + 0.9375) + b;
+            }
+            else
+            {
+                t = t - (2.625 / 2.75);
+                return c * (7.5625 * t * t + 0.984375) + b;
+            }
+        }
+
+        // IN BOUNCE
+
+        public static double InBounce(double t) => NormalizedTime(InBounce, t);
+        public static double InBounce(double time, double start, double end) => TimeRange(InBounce, time, start, end);
+
+        public static double InBounce(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            return c - OutBounce(d - t, 0, c, d) + b;
+        }
+
+        // IN OUT BOUNCE
+
+        public static double InOutBounce(double t) => NormalizedTime(InOutBounce, t);
+        public static double InOutBounce(double time, double start, double end) => TimeRange(InOutBounce, time, start, end);
+
+        public static double InOutBounce(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            if (t < d / 2)
+            {
+                return InBounce(t * 2, 0, c, d) * 0.5 + b;
+            }
+            else
+            {
+                return OutBounce(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b;
+            }
+        }
+
+        // OUT IN BOUNCE
+
+        public static double OutInBounce(double t) => NormalizedTime(OutInBounce, t);
+        public static double OutInBounce(double time, double start, double end) => TimeRange(OutInBounce, time, start, end);
+        public static double OutInBounce(double t, double b, double c, double d) => OutIn(OutBounce, InBounce, t, b, c, d);
     }
 }
