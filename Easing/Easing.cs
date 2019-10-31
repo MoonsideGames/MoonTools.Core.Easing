@@ -602,10 +602,11 @@ namespace MoonTools.Core.Easing
         public static double OutInCirc(double time, double start, double end) => TimeRange(OutInCirc, time, start, end);
         public static double OutInCirc(double t, double b, double c, double d) => OutIn(OutCirc, InCirc, t, b, c, d);
 
-        // IN ELASTIC
-
+        // ELASTIC functions have two optional extra arguments
         // a: amplitude
         // p: period
+
+        // IN ELASTIC
 
         public static double InElasticNormalized(double t) => InElastic(t, 0, 1, 1);
         public static double InElasticNormalized(double t, double a) => InElastic(t, 0, 1, 1, a);
@@ -678,6 +679,148 @@ namespace MoonTools.Core.Easing
             }
 
             return a.Value * Math.Pow(2, -10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value) + c + b;
+        }
+
+        // IN OUT ELASTIC
+
+        public static double InOutElasticNormalized(double t) => InOutElastic(t, 0, 1, 1);
+        public static double InOutElasticNormalized(double t, double a) => InOutElastic(t, 0, 1, 1, a);
+        public static double InOutElasticNormalized(double t, double a, double p) => InOutElastic(t, 0, 1, 1, a, p);
+
+        public static double InOutElasticTimeRange(double time, double start, double end) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start));
+        public static double InOutElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start), a);
+        public static double InOutElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start), a, p);
+
+        public static double InOutElastic(double t, double b, double c, double d, double? a = null, double? p = null)
+        {
+            CheckTime(t, d);
+
+            if (t == 0) { return b; }
+
+            t = t / d * 2;
+
+            if (t == 2) { return b + c; }
+
+            if (!p.HasValue) { p = d * (0.3 * 1.5); }
+            if (!a.HasValue) { a = 0; }
+
+            double s;
+
+            if (!a.HasValue || a < Math.Abs(c))
+            {
+                a = c;
+                s = p.Value / 4;
+            }
+            else
+            {
+                s = p.Value / (2 * Math.PI) * Math.Asin(c / a.Value);
+            }
+
+            if (t < 1)
+            {
+                t = t - 1;
+                return -0.5 * (a.Value * Math.Pow(2, 10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value)) + b;
+            }
+            else
+            {
+                t = t - 1;
+                return a.Value * Math.Pow(2, -10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value) * 0.5 + c + b;
+            }
+        }
+
+        // OUT IN ELASTIC
+
+        public static double OutInElasticNormalized(double t) => OutInElastic(t, 0, 1, 1);
+        public static double OutInElasticNormalized(double t, double a) => OutInElastic(t, 0, 1, 1, a);
+        public static double OutInElasticNormalized(double t, double a, double p) => OutInElastic(t, 0, 1, 1, a, p);
+
+        public static double OutInElasticTimeRange(double time, double start, double end) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start));
+        public static double OutInElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start), a);
+        public static double OutInElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start), a, p);
+
+        public static double OutInElastic(double t, double b, double c, double d, double? a = null, double? p = null)
+        {
+            if (t < d / 2)
+            {
+                return OutElastic(t * 2, b, c / 2, d, a, p);
+            }
+            else
+            {
+                return InElastic((t * 2) - d, b + c / 2, c / 2, d, a, p);
+            }
+        }
+
+        // back functions take an optional parameter
+        // s: size
+
+        // IN BACK
+
+        public static double InBackNormalized(double t) => InBack(t, 0, 1, 1);
+        public static double InBackNormalized(double t, double s) => InBack(t, 0, 1, 1, s);
+        public static double InBackTimeRange(double time, double start, double end) => start + (end - start) * InBackNormalized((time - start) / (end - start));
+        public static double InBackTimeRange(double time, double start, double end, double s) => start + (end - start) * InBackNormalized((time - start) / (end - start), s);
+
+        public static double InBack(double t, double b, double c, double d, double s = 1.70158)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return c * t * t * ((s + 1) * t - s) + b;
+        }
+
+        // OUT BACK
+
+        public static double OutBackNormalized(double t) => OutBack(t, 0, 1, 1);
+        public static double OutBackNormalized(double t, double s) => OutBack(t, 0, 1, 1, s);
+        public static double OutBackTimeRange(double time, double start, double end) => start + (end - start) * OutBackNormalized((time - start) / (end - start));
+        public static double OutBackTimeRange(double time, double start, double end, double s) => start + (end - start) * OutBackNormalized((time - start) / (end - start), s);
+
+        public static double OutBack(double t, double b, double c, double d, double s = 1.70158)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * (t * t * ((s + 1) * t + s) + 1) + b;
+        }
+
+        // IN OUT BACK
+
+        public static double InOutBackNormalized(double t) => InOutBack(t, 0, 1, 1);
+        public static double InOutBackNormalized(double t, double s) => InOutBack(t, 0, 1, 1, s);
+        public static double InOutBackTimeRange(double time, double start, double end) => start + (end - start) * InOutBackNormalized((time - start) / (end - start));
+        public static double InOutBackTimeRange(double time, double start, double end, double s) => start + (end - start) * InOutBackNormalized((time - start) / (end - start), s);
+
+        public static double InOutBack(double t, double b, double c, double d, double s = 1.70158)
+        {
+            CheckTime(t, d);
+            s = s * 1.525;
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * (t * t * ((s + 1) * t - s)) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * (t * t * ((s + 1) * t + s) + 2) + b;
+            }
+        }
+
+        // OUT IN BACK
+
+        public static double OutInBackNormalized(double t) => OutInBack(t, 0, 1, 1);
+        public static double OutInBackNormalized(double t, double s) => OutInBack(t, 0, 1, 1, s);
+        public static double OutInBackTimeRange(double time, double start, double end) => start + (end - start) * OutInBackNormalized((time - start) / (end - start));
+        public static double OutInBackTimeRange(double time, double start, double end, double s) => start + (end - start) * OutInBackNormalized((time - start) / (end - start), s);
+
+        public static double OutInBack(double t, double b, double c, double d, double s = 1.70158)
+        {
+            if (t < d / 2)
+            {
+                return OutBack(t * 2, b, c / 2, d, s);
+            }
+            else
+            {
+                return InBack((t * 2) - d, b + c / 2, c / 2, d, s);
+            }
         }
     }
 }

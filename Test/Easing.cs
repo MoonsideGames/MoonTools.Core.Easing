@@ -902,7 +902,7 @@ namespace Test
                 Easing.InElasticTimeRange(4, 2, 6).Should().BeApproximately(1.9375, 0.001);
                 Easing.InElasticTimeRange(5, 2, 6).Should().BeApproximately(2.35355339059, 0.001);
 
-                CheckDoubleArguments(Easing.InElasticNormalized, Easing.InElasticNormalized);
+                CheckDoubleArguments(Easing.InElasticNormalized, Easing.InElasticTimeRange);
             }
 
             [Test]
@@ -940,7 +940,7 @@ namespace Test
                 Easing.OutElasticTimeRange(4, 2, 6).Should().BeApproximately(6.0625, 0.001);
                 Easing.OutElasticTimeRange(5, 2, 6).Should().BeApproximately(6.02209708691, 0.001);
 
-                CheckDoubleArguments(Easing.OutElasticNormalized, Easing.OutElasticNormalized);
+                CheckDoubleArguments(Easing.OutElasticNormalized, Easing.OutElasticTimeRange);
             }
 
             [Test]
@@ -965,6 +965,186 @@ namespace Test
                 Easing.OutElasticTimeRange(3, 2, 6, 10, 0.5).Should().BeApproximately(6.70710678118, 0.001);
                 Easing.OutElasticTimeRange(4, 2, 6, 10, 0.5).Should().BeApproximately(5.875, 0.001);
                 Easing.OutElasticTimeRange(5, 2, 6, 10, 0.5).Should().BeApproximately(6.02209708691, 0.001);
+            }
+
+            [Test]
+            public void InOutElasticDefault()
+            {
+                Easing.InOutElasticNormalized(0.25).Should().BeApproximately(0.011969444423734, 0.001);
+                Easing.InOutElasticNormalized(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutElasticNormalized(0.75).Should().BeApproximately(0.98803055557627, 0.001);
+
+                Easing.InOutElasticTimeRange(3, 2, 6).Should().BeApproximately(2.0478777777, 0.001);
+                Easing.InOutElasticTimeRange(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.InOutElasticTimeRange(5, 2, 6).Should().BeApproximately(5.9521222223, 0.001);
+
+                CheckDoubleArguments(Easing.InOutElasticNormalized, Easing.InOutElasticTimeRange);
+            }
+
+            [Test]
+            public void InOutElasticWithA()
+            {
+                Easing.InOutElasticNormalized(0.25, 10).Should().BeApproximately(0.11190156885591, 0.001);
+                Easing.InOutElasticNormalized(0.5, 10).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutElasticNormalized(0.75, 10).Should().BeApproximately(1.0879626800084, 0.001);
+
+                Easing.InOutElasticTimeRange(3, 2, 6, 10).Should().BeApproximately(2.44760627542, 0.001);
+                Easing.InOutElasticTimeRange(4, 2, 6, 10).Should().BeApproximately(4, 0.001);
+                Easing.InOutElasticTimeRange(5, 2, 6, 10).Should().BeApproximately(6.35185072004, 0.001);
+            }
+
+            [Test]
+            public void InOutElasticWithAAndP()
+            {
+                Easing.InOutElasticNormalized(0.25, 10, 0.5).Should().BeApproximately(0.015625, 0.001);
+                Easing.InOutElasticNormalized(0.5, 10, 0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutElasticNormalized(0.75, 10, 0.5).Should().BeApproximately(0.984375, 0.001);
+
+                Easing.InOutElasticTimeRange(3, 2, 6, 10, 0.5).Should().BeApproximately(2.0625, 0.001);
+                Easing.InOutElasticTimeRange(4, 2, 6, 10, 0.5).Should().BeApproximately(4, 0.001);
+                Easing.InOutElasticTimeRange(5, 2, 6, 10, 0.5).Should().BeApproximately(5.9375, 0.001);
+            }
+
+            [Test]
+            public void OutInElasticDefault()
+            {
+                Easing.OutInElasticNormalized(0.25).Should().BeApproximately(0.5078125, 0.001);
+                Easing.OutInElasticNormalized(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInElasticNormalized(0.75).Should().BeApproximately(0.4921875, 0.001);
+
+                Easing.OutInElasticTimeRange(3, 2, 6).Should().BeApproximately(4.03125, 0.001);
+                Easing.OutInElasticTimeRange(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.OutInElasticTimeRange(5, 2, 6).Should().BeApproximately(3.96875, 0.001);
+
+                CheckDoubleArguments(Easing.OutInElasticNormalized, Easing.OutInElasticTimeRange);
+            }
+
+            [Test]
+            public void OutInElasticWithA()
+            {
+                Easing.OutInElasticNormalized(0.25, 10).Should().BeApproximately(0.2375180641874, 0.001);
+                Easing.OutInElasticNormalized(0.5, 10).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInElasticNormalized(0.75, 10).Should().BeApproximately(0.2218930641874, 0.001);
+
+                Easing.OutInElasticTimeRange(3, 2, 6, 10).Should().BeApproximately(2.95007225675, 0.001);
+                Easing.OutInElasticTimeRange(4, 2, 6, 10).Should().BeApproximately(4, 0.001);
+                Easing.OutInElasticTimeRange(5, 2, 6, 10).Should().BeApproximately(2.88757225675, 0.001);
+            }
+
+            [Test]
+            public void OutInElasticWithAAndP()
+            {
+                Easing.OutInElasticNormalized(0.25, 10, 0.5).Should().BeApproximately(0.484375, 0.001);
+                Easing.OutInElasticNormalized(0.5, 10, 0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInElasticNormalized(0.75, 10, 0.5).Should().BeApproximately(0.515625, 0.001);
+
+                Easing.OutInElasticTimeRange(3, 2, 6, 10, 0.5).Should().BeApproximately(3.9375, 0.001);
+                Easing.OutInElasticTimeRange(4, 2, 6, 10, 0.5).Should().BeApproximately(4, 0.001);
+                Easing.OutInElasticTimeRange(5, 2, 6, 10, 0.5).Should().BeApproximately(4.0625, 0.001);
+            }
+
+            [Test]
+            public void InBackDefault()
+            {
+                Easing.InBackNormalized(0.25).Should().BeApproximately(-0.0641365625, 0.001);
+                Easing.InBackNormalized(0.5).Should().BeApproximately(-0.0876975, 0.001);
+                Easing.InBackNormalized(0.75).Should().BeApproximately(0.1825903125, 0.001);
+
+                Easing.InBackTimeRange(3, 2, 6).Should().BeApproximately(1.74345375, 0.001);
+                Easing.InBackTimeRange(4, 2, 6).Should().BeApproximately(1.64921, 0.001);
+                Easing.InBackTimeRange(5, 2, 6).Should().BeApproximately(2.73036125, 0.001);
+
+                CheckDoubleArguments(Easing.InBackNormalized, Easing.InBackTimeRange);
+            }
+
+            [Test]
+            public void InBackWithSize()
+            {
+                Easing.InBackNormalized(0.25, 3).Should().BeApproximately(-0.125, 0.001);
+                Easing.InBackNormalized(0.5, 3).Should().BeApproximately(-0.25, 0.001);
+                Easing.InBackNormalized(0.75, 3).Should().BeApproximately(0, 0.001);
+
+                Easing.InBackTimeRange(3, 2, 6, 3).Should().BeApproximately(1.5, 0.001);
+                Easing.InBackTimeRange(4, 2, 6, 3).Should().BeApproximately(1, 0.001);
+                Easing.InBackTimeRange(5, 2, 6, 3).Should().BeApproximately(2, 0.001);
+            }
+
+            [Test]
+            public void OutBackDefault()
+            {
+                Easing.OutBackNormalized(0.25).Should().BeApproximately(0.8174096875, 0.001);
+                Easing.OutBackNormalized(0.5).Should().BeApproximately(1.0876975, 0.001);
+                Easing.OutBackNormalized(0.75).Should().BeApproximately(1.0641365625, 0.001);
+
+                Easing.OutBackTimeRange(3, 2, 6).Should().BeApproximately(5.26963875, 0.001);
+                Easing.OutBackTimeRange(4, 2, 6).Should().BeApproximately(6.35079, 0.001);
+                Easing.OutBackTimeRange(5, 2, 6).Should().BeApproximately(6.25654625, 0.001);
+
+                CheckDoubleArguments(Easing.OutBackNormalized, Easing.OutBackTimeRange);
+            }
+
+            [Test]
+            public void OutBackWithSize()
+            {
+                Easing.OutBackNormalized(0.25, 3).Should().BeApproximately(1, 0.001);
+                Easing.OutBackNormalized(0.5, 3).Should().BeApproximately(1.25, 0.001);
+                Easing.OutBackNormalized(0.75, 3).Should().BeApproximately(1.125, 0.001);
+
+                Easing.OutBackTimeRange(3, 2, 6, 3).Should().BeApproximately(6, 0.001);
+                Easing.OutBackTimeRange(4, 2, 6, 3).Should().BeApproximately(7, 0.001);
+                Easing.OutBackTimeRange(5, 2, 6, 3).Should().BeApproximately(6.5, 0.001);
+            }
+
+            [Test]
+            public void InOutBackDefault()
+            {
+                Easing.InOutBackNormalized(0.25).Should().BeApproximately(-0.09968184375, 0.001);
+                Easing.InOutBackNormalized(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutBackNormalized(0.75).Should().BeApproximately(1.09968184375, 0.001);
+
+                Easing.InOutBackTimeRange(3, 2, 6).Should().BeApproximately(1.601272625, 0.001);
+                Easing.InOutBackTimeRange(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.InOutBackTimeRange(5, 2, 6).Should().BeApproximately(6.398727375, 0.001);
+
+                CheckDoubleArguments(Easing.InOutBackNormalized, Easing.InOutBackTimeRange);
+            }
+
+            [Test]
+            public void InOutBackWithSize()
+            {
+                Easing.InOutBackNormalized(0.25, 3).Should().BeApproximately(-0.2234375, 0.001);
+                Easing.InOutBackNormalized(0.5, 3).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutBackNormalized(0.75, 3).Should().BeApproximately(1.2234375, 0.001);
+
+                Easing.InOutBackTimeRange(3, 2, 6, 3).Should().BeApproximately(1.10625, 0.001);
+                Easing.InOutBackTimeRange(4, 2, 6, 3).Should().BeApproximately(4, 0.001);
+                Easing.InOutBackTimeRange(5, 2, 6, 3).Should().BeApproximately(6.89375, 0.001);
+            }
+
+            [Test]
+            public void OutInBackDefault()
+            {
+                Easing.OutInBackNormalized(0.25).Should().BeApproximately(0.54384875, 0.001);
+                Easing.OutInBackNormalized(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInBackNormalized(0.75).Should().BeApproximately(0.45615125, 0.001);
+
+                Easing.OutInBackTimeRange(3, 2, 6).Should().BeApproximately(4.175395, 0.001);
+                Easing.OutInBackTimeRange(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.OutInBackTimeRange(5, 2, 6).Should().BeApproximately(3.824605, 0.001);
+
+                CheckDoubleArguments(Easing.OutInBackNormalized, Easing.OutInBackTimeRange);
+            }
+
+            [Test]
+            public void OutInBackWithSize()
+            {
+                Easing.OutInBackNormalized(0.25, 3).Should().BeApproximately(0.625, 0.001);
+                Easing.OutInBackNormalized(0.5, 3).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInBackNormalized(0.75, 3).Should().BeApproximately(0.375, 0.001);
+
+                Easing.OutInBackTimeRange(3, 2, 6, 3).Should().BeApproximately(4.5, 0.001);
+                Easing.OutInBackTimeRange(4, 2, 6, 3).Should().BeApproximately(4, 0.001);
+                Easing.OutInBackTimeRange(5, 2, 6, 3).Should().BeApproximately(3.5, 0.001);
             }
         }
     }
