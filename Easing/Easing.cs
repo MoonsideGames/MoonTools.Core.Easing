@@ -504,5 +504,57 @@ namespace MoonTools.Core.Easing
                 return InQuint((t * 2) - d, b + c / 2, c / 2, d);
             }
         }
+
+        // note: no float implementations because trig functions are double precision
+
+        // IN SINE
+
+        public static double InSine(double t) => NormalizedTime(InSine, t);
+        public static double InSine(double time, double start, double end) => TimeRange(InSine, time, start, end);
+
+        public static double InSine(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            return -c * Math.Cos(t / d * (Math.PI / 2)) + c + b;
+        }
+
+        // OUT SINE
+
+        public static double OutSine(double t) => NormalizedTime(OutSine, t);
+        public static double OutSine(double time, double start, double end) => TimeRange(OutSine, time, start, end);
+
+        public static double OutSine(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            return c * Math.Sin(t / d * (Math.PI / 2)) + b;
+        }
+
+        // IN OUT SINE
+
+        public static double InOutSine(double t) => NormalizedTime(InOutSine, t);
+        public static double InOutSine(double time, double start, double end) => TimeRange(InOutSine, time, start, end);
+
+        public static double InOutSine(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            return -c / 2 * (Math.Cos(Math.PI * t / d) - 1) + b;
+        }
+
+        // OUT IN SINE
+
+        public static double OutInSine(double t) => NormalizedTime(OutInSine, t);
+        public static double OutInSine(double time, double start, double end) => TimeRange(OutInSine, time, start, end);
+
+        public static double OutInSine(double t, double b, double c, double d)
+        {
+            if (t < d / 2)
+            {
+                return OutSine(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return InSine((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
     }
 }
