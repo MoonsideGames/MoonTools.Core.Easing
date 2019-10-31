@@ -601,5 +601,83 @@ namespace MoonTools.Core.Easing
         public static double OutInCirc(double t) => NormalizedTime(OutInCirc, t);
         public static double OutInCirc(double time, double start, double end) => TimeRange(OutInCirc, time, start, end);
         public static double OutInCirc(double t, double b, double c, double d) => OutIn(OutCirc, InCirc, t, b, c, d);
+
+        // IN ELASTIC
+
+        // a: amplitude
+        // p: period
+
+        public static double InElasticNormalized(double t) => InElastic(t, 0, 1, 1);
+        public static double InElasticNormalized(double t, double a) => InElastic(t, 0, 1, 1, a);
+        public static double InElasticNormalized(double t, double a, double p) => InElastic(t, 0, 1, 1, a, p);
+
+        public static double InElasticTimeRange(double time, double start, double end) => start + (end - start) * InElasticNormalized((time - start) / (end - start));
+        public static double InElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * InElasticNormalized((time - start) / (end - start), a);
+        public static double InElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * InElasticNormalized((time - start) / (end - start), a, p);
+
+        public static double InElastic(double t, double b, double c, double d, double? a = null, double? p = null)
+        {
+            CheckTime(t, d);
+
+            if (t == 0) { return b; }
+
+            t = t / d;
+
+            if (t == 1) { return b + c; }
+
+            if (!p.HasValue) { p = d * 0.3; }
+
+            double s;
+            if (!a.HasValue || a.Value < Math.Abs(c))
+            {
+                a = c;
+                s = p.Value / 4;
+            }
+            else
+            {
+                s = p.Value / (2 * Math.PI) * Math.Asin(c / a.Value);
+            }
+
+            t = t - 1;
+
+            return -(a.Value * Math.Pow(2, 10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value)) + b;
+        }
+
+        // OUT ELASTIC
+
+        public static double OutElasticNormalized(double t) => OutElastic(t, 0, 1, 1);
+        public static double OutElasticNormalized(double t, double a) => OutElastic(t, 0, 1, 1, a);
+        public static double OutElasticNormalized(double t, double a, double p) => OutElastic(t, 0, 1, 1, a, p);
+
+        public static double OutElasticTimeRange(double time, double start, double end) => start + (end - start) * OutElasticNormalized((time - start) / (end - start));
+        public static double OutElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * OutElasticNormalized((time - start) / (end - start), a);
+        public static double OutElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * OutElasticNormalized((time - start) / (end - start), a, p);
+
+        public static double OutElastic(double t, double b, double c, double d, double? a = null, double? p = null)
+        {
+            CheckTime(t, d);
+
+            if (t == 0) { return b; }
+
+            t = t / d;
+
+            if (t == 1) { return b + c; }
+
+            if (!p.HasValue) { p = d * 0.3; }
+
+            double s;
+
+            if (!a.HasValue || a.Value < Math.Abs(c))
+            {
+                a = c;
+                s = p.Value / 4;
+            }
+            else
+            {
+                s = p.Value / (2 * Math.PI) * Math.Asin(c / a.Value);
+            }
+
+            return a.Value * Math.Pow(2, -10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value) + c + b;
+        }
     }
 }
