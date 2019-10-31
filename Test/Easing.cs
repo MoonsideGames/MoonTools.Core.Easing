@@ -337,6 +337,150 @@ namespace Test
                 invalidTime = () => Easing.OutSine(7f, 2, 6);
                 invalidTime.Should().Throw<ArgumentException>();
             }
+
+            [Test]
+            public void InExpo()
+            {
+                Easing.InExpo(0.25f).Should().BeApproximately(0.0045242717280199f, 0.0001f);
+                Easing.InExpo(0.5f).Should().BeApproximately(0.03025f, 0.0001f);
+                Easing.InExpo(0.75f).Should().BeApproximately(0.17577669529664f, 0.0001f);
+
+                Easing.InExpo(3f, 2, 6).Should().BeApproximately(2.0180970869121f, 0.0001f);
+                Easing.InExpo(4f, 2, 6).Should().BeApproximately(2.121f, 0.0001f);
+                Easing.InExpo(5f, 2, 6).Should().BeApproximately(2.703106781187f, 0.0001f);
+
+                Action invalidTime = () => Easing.InExpo(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.InExpo(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void OutExpo()
+            {
+                Easing.OutExpo(0.25f).Should().BeApproximately(0.82404652800807f, 0.0001f);
+                Easing.OutExpo(0.5f).Should().BeApproximately(0.96971875f, 0.0001f);
+                Easing.OutExpo(0.75f).Should().BeApproximately(0.99547020400025f, 0.0001f);
+
+                Easing.OutExpo(3f, 2, 6).Should().BeApproximately(5.29618611203f, 0.0001f);
+                Easing.OutExpo(4f, 2, 6).Should().BeApproximately(5.878875f, 0.0001f);
+                Easing.OutExpo(5f, 2, 6).Should().BeApproximately(5.981880816f, 0.0001f);
+
+                Action invalidTime = () => Easing.OutExpo(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.OutExpo(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void InOutExpo()
+            {
+                Easing.InOutExpo(0.25f).Should().BeApproximately(0.015125f, 0.001f);
+                Easing.InOutExpo(0.5f).Should().BeApproximately(0.5f, 0.001f);
+                Easing.InOutExpo(0.75f).Should().BeApproximately(0.9848671875f, 0.001f);
+
+                Easing.InOutExpo(3f, 2, 6).Should().BeApproximately(2.0605f, 0.001f);
+                Easing.InOutExpo(4f, 2, 6).Should().BeApproximately(4f, 0.001f);
+                Easing.InOutExpo(5f, 2, 6).Should().BeApproximately(5.93946875f, 0.001f);
+
+                Action invalidTime = () => Easing.InOutExpo(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.InOutExpo(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void OutInExpo()
+            {
+                Easing.OutInExpo(0.25f).Should().BeApproximately(0.484859375f, 0.001f);
+                Easing.OutInExpo(0.5f).Should().BeApproximately(0.5f, 0.001f);
+                Easing.OutInExpo(0.75f).Should().BeApproximately(0.515125f, 0.001f);
+
+                Easing.OutInExpo(3f, 2, 6).Should().BeApproximately(3.9394375f, 0.001f);
+                Easing.OutInExpo(4f, 2, 6).Should().BeApproximately(4f, 0.001f);
+                Easing.OutInExpo(5f, 2, 6).Should().BeApproximately(4.0605f, 0.001f);
+
+                Action invalidTime = () => Easing.OutInExpo(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.OutInExpo(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void InCircular()
+            {
+                Easing.InCirc(0.25f).Should().BeApproximately(0.031754163448146f, 0.001f);
+                Easing.InCirc(0.5f).Should().BeApproximately(0.13397459621556f, 0.001f);
+                Easing.InCirc(0.75f).Should().BeApproximately(0.33856217223385f, 0.001f);
+
+                Easing.InCirc(3f, 2, 6).Should().BeApproximately(2.127016653793f, 0.001f);
+                Easing.InCirc(4f, 2, 6).Should().BeApproximately(2.535898384862f, 0.001f);
+                Easing.InCirc(5f, 2, 6).Should().BeApproximately(3.35424868894f, 0.001f);
+
+                Action invalidTime = () => Easing.InCirc(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.InCirc(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void OutCircular()
+            {
+                Easing.OutCirc(0.25f).Should().BeApproximately(0.66143782776615f, 0.001f);
+                Easing.OutCirc(0.5f).Should().BeApproximately(0.86602540378444f, 0.001f);
+                Easing.OutCirc(0.75f).Should().BeApproximately(0.96824583655185f, 0.001f);
+
+                Easing.OutCirc(3f, 2, 6).Should().BeApproximately(4.64575131107f, 0.001f);
+                Easing.OutCirc(4f, 2, 6).Should().BeApproximately(5.46410161514f, 0.001f);
+                Easing.OutCirc(5f, 2, 6).Should().BeApproximately(5.87298334621f, 0.001f);
+
+                Action invalidTime = () => Easing.OutCirc(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.OutCirc(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void InOutCircular()
+            {
+                Easing.InOutCirc(0.25f).Should().BeApproximately(0.066987298107781f, 0.001f);
+                Easing.InOutCirc(0.5f).Should().BeApproximately(0.5f, 0.001f);
+                Easing.InOutCirc(0.75f).Should().BeApproximately(0.93301270189222f, 0.001f);
+
+                Easing.InOutCirc(3f, 2, 6).Should().BeApproximately(2.267949192431f, 0.001f);
+                Easing.InOutCirc(4f, 2, 6).Should().BeApproximately(4f, 0.001f);
+                Easing.InOutCirc(5f, 2, 6).Should().BeApproximately(5.73205080757f, 0.001f);
+
+                Action invalidTime = () => Easing.InOutCirc(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.InOutCirc(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
+
+            [Test]
+            public void OutInCircular()
+            {
+                Easing.OutInCirc(0.25f).Should().BeApproximately(0.43301270189222f, 0.001f);
+                Easing.OutInCirc(0.5f).Should().BeApproximately(0.5f, 0.001f);
+                Easing.OutInCirc(0.75f).Should().BeApproximately(0.56698729810778f, 0.001f);
+
+                Easing.OutInCirc(3f, 2, 6).Should().BeApproximately(3.73205080757f, 0.001f);
+                Easing.OutInCirc(4f, 2, 6).Should().BeApproximately(4f, 0.001f);
+                Easing.OutInCirc(5f, 2, 6).Should().BeApproximately(4.26794919243f, 0.001f);
+
+                Action invalidTime = () => Easing.OutInCirc(1.5f);
+                invalidTime.Should().Throw<ArgumentException>();
+
+                invalidTime = () => Easing.OutInCirc(7f, 2, 6);
+                invalidTime.Should().Throw<ArgumentException>();
+            }
         }
 
         public class DoubleTests
@@ -633,6 +777,118 @@ namespace Test
                 Easing.OutInSine(5, 2, 6).Should().BeApproximately(4.58578643763, 0.0001);
 
                 CheckDoubleArguments(Easing.OutInSine, Easing.OutInSine);
+            }
+
+            [Test]
+            public void InExpo()
+            {
+                Easing.InExpo(0.25).Should().BeApproximately(0.0045242717280199, 0.0001);
+                Easing.InExpo(0.5).Should().BeApproximately(0.03025, 0.0001);
+                Easing.InExpo(0.75).Should().BeApproximately(0.17577669529664, 0.0001);
+
+                Easing.InExpo(3, 2, 6).Should().BeApproximately(2.0180970869121, 0.0001);
+                Easing.InExpo(4, 2, 6).Should().BeApproximately(2.121, 0.0001);
+                Easing.InExpo(5, 2, 6).Should().BeApproximately(2.703106781187, 0.0001);
+
+                CheckDoubleArguments(Easing.InExpo, Easing.InExpo);
+            }
+
+            [Test]
+            public void OutExpo()
+            {
+                Easing.OutExpo(0.25).Should().BeApproximately(0.82404652800807, 0.0001);
+                Easing.OutExpo(0.5).Should().BeApproximately(0.96971875, 0.0001);
+                Easing.OutExpo(0.75).Should().BeApproximately(0.99547020400025, 0.0001);
+
+                Easing.OutExpo(3, 2, 6).Should().BeApproximately(5.29618611203, 0.0001);
+                Easing.OutExpo(4, 2, 6).Should().BeApproximately(5.878875, 0.0001);
+                Easing.OutExpo(5, 2, 6).Should().BeApproximately(5.981880816, 0.0001);
+
+                CheckDoubleArguments(Easing.OutExpo, Easing.OutExpo);
+            }
+
+            [Test]
+            public void InOutExpo()
+            {
+                Easing.InOutExpo(0.25).Should().BeApproximately(0.015125, 0.001);
+                Easing.InOutExpo(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutExpo(0.75).Should().BeApproximately(0.9848671875, 0.001);
+
+                Easing.InOutExpo(3, 2, 6).Should().BeApproximately(2.0605, 0.001);
+                Easing.InOutExpo(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.InOutExpo(5, 2, 6).Should().BeApproximately(5.93946875, 0.001);
+
+                CheckDoubleArguments(Easing.InOutExpo, Easing.InOutExpo);
+            }
+
+            [Test]
+            public void OutInExpo()
+            {
+                Easing.OutInExpo(0.25).Should().BeApproximately(0.484859375, 0.001);
+                Easing.OutInExpo(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInExpo(0.75).Should().BeApproximately(0.515125, 0.001);
+
+                Easing.OutInExpo(3, 2, 6).Should().BeApproximately(3.9394375, 0.001);
+                Easing.OutInExpo(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.OutInExpo(5, 2, 6).Should().BeApproximately(4.0605, 0.001);
+
+                CheckDoubleArguments(Easing.OutInExpo, Easing.OutInExpo);
+            }
+
+            [Test]
+            public void InCircular()
+            {
+                Easing.InCirc(0.25).Should().BeApproximately(0.031754163448146, 0.001);
+                Easing.InCirc(0.5).Should().BeApproximately(0.13397459621556, 0.001);
+                Easing.InCirc(0.75).Should().BeApproximately(0.33856217223385, 0.001);
+
+                Easing.InCirc(3, 2, 6).Should().BeApproximately(2.127016653793, 0.001);
+                Easing.InCirc(4, 2, 6).Should().BeApproximately(2.535898384862, 0.001);
+                Easing.InCirc(5, 2, 6).Should().BeApproximately(3.35424868894, 0.001);
+
+                CheckDoubleArguments(Easing.InCirc, Easing.InCirc);
+            }
+
+            [Test]
+            public void OutCircular()
+            {
+                Easing.OutCirc(0.25).Should().BeApproximately(0.66143782776615, 0.001);
+                Easing.OutCirc(0.5).Should().BeApproximately(0.86602540378444, 0.001);
+                Easing.OutCirc(0.75).Should().BeApproximately(0.96824583655185, 0.001);
+
+                Easing.OutCirc(3, 2, 6).Should().BeApproximately(4.64575131107, 0.001);
+                Easing.OutCirc(4, 2, 6).Should().BeApproximately(5.46410161514, 0.001);
+                Easing.OutCirc(5, 2, 6).Should().BeApproximately(5.87298334621, 0.001);
+
+                CheckDoubleArguments(Easing.OutCirc, Easing.OutCirc);
+            }
+
+            [Test]
+            public void InOutCircular()
+            {
+                Easing.InOutCirc(0.25).Should().BeApproximately(0.066987298107781, 0.001);
+                Easing.InOutCirc(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.InOutCirc(0.75).Should().BeApproximately(0.93301270189222, 0.001);
+
+                Easing.InOutCirc(3, 2, 6).Should().BeApproximately(2.267949192431, 0.001);
+                Easing.InOutCirc(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.InOutCirc(5, 2, 6).Should().BeApproximately(5.73205080757, 0.001);
+
+                CheckDoubleArguments(Easing.InOutCirc, Easing.InOutCirc);
+            }
+
+            [Test]
+            public void OutInCircular()
+            {
+                Easing.OutInCirc(0.25).Should().BeApproximately(0.43301270189222, 0.001);
+                Easing.OutInCirc(0.5).Should().BeApproximately(0.5, 0.001);
+                Easing.OutInCirc(0.75).Should().BeApproximately(0.56698729810778, 0.001);
+
+                Easing.OutInCirc(3, 2, 6).Should().BeApproximately(3.73205080757, 0.001);
+                Easing.OutInCirc(4, 2, 6).Should().BeApproximately(4, 0.001);
+                Easing.OutInCirc(5, 2, 6).Should().BeApproximately(4.26794919243, 0.001);
+
+                CheckDoubleArguments(Easing.OutInCirc, Easing.OutInCirc);
             }
         }
     }

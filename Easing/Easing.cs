@@ -20,8 +20,42 @@ namespace MoonTools.Core.Easing
         private static float NormalizedTime(Func<float, float, float, float, float> easingFunction, float t) => easingFunction(t, 0, 1, 1);
         private static float TimeRange(Func<float, float> easingFunction, float time, float start, float end) => start + (end - start) * easingFunction((time - start) / (end - start));
 
+        private static float OutIn(Func<float, float, float, float, float> outFunc,
+                            Func<float, float, float, float, float> inFunc,
+                            float t,
+                            float b,
+                            float c,
+                            float d)
+        {
+            if (t < d / 2)
+            {
+                return outFunc(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return inFunc((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
         private static double NormalizedTime(Func<double, double, double, double, double> easingFunction, double t) => easingFunction(t, 0, 1, 1);
         private static double TimeRange(Func<double, double> easingFunction, double time, double start, double end) => start + (end - start) * easingFunction((time - start) / (end - start));
+
+        private static double OutIn(Func<double, double, double, double, double> outFunc,
+                                    Func<double, double, double, double, double> inFunc,
+                                    double t,
+                                    double b,
+                                    double c,
+                                    double d)
+        {
+            if (t < d / 2)
+            {
+                return outFunc(t * 2, b, c / 2, d);
+            }
+            else
+            {
+                return inFunc((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
 
         /********* EASING FUNCTIONS ********/
 
@@ -129,35 +163,11 @@ namespace MoonTools.Core.Easing
 
         public static float OutInQuad(float t) => NormalizedTime(OutInQuad, t);
         public static float OutInQuad(float time, float start, float end) => TimeRange(OutInQuad, time, start, end);
-
-        public static float OutInQuad(float t, float b, float c, float d)
-        {
-            CheckTime(t, d);
-            if (t < d / 2)
-            {
-                return OutQuad(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuad((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static float OutInQuad(float t, float b, float c, float d) => OutIn(OutQuad, InQuad, t, b, c, d);
 
         public static double OutInQuad(double t) => NormalizedTime(OutInQuad, t);
         public static double OutInQuad(double time, double start, double end) => TimeRange(OutInQuad, time, start, end);
-
-        public static double OutInQuad(double t, double b, double c, double d)
-        {
-            CheckTime(t, d);
-            if (t < d / 2)
-            {
-                return OutQuad(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuad((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static double OutInQuad(double t, double b, double c, double d) => OutIn(OutQuad, InQuad, t, b, c, d);
 
         // IN CUBIC
 
@@ -247,33 +257,11 @@ namespace MoonTools.Core.Easing
 
         public static float OutInCubic(float t) => NormalizedTime(OutInCubic, t);
         public static float OutInCubic(float time, float start, float end) => TimeRange(OutInCubic, time, start, end);
-
-        public static float OutInCubic(float t, float b, float c, float d)
-        {
-            if (t < d / 2)
-            {
-                return OutCubic(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InCubic((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static float OutInCubic(float t, float b, float c, float d) => OutIn(OutCubic, InCubic, t, b, c, d);
 
         public static double OutInCubic(double t) => NormalizedTime(OutInCubic, t);
         public static double OutInCubic(double time, double start, double end) => TimeRange(OutInCubic, time, start, end);
-
-        public static double OutInCubic(double t, double b, double c, double d)
-        {
-            if (t < d / 2)
-            {
-                return OutCubic(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InCubic((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static double OutInCubic(double t, double b, double c, double d) => OutIn(OutCubic, InCubic, t, b, c, d);
 
         // IN QUARTIC
 
@@ -361,33 +349,11 @@ namespace MoonTools.Core.Easing
 
         public static float OutInQuart(float t) => NormalizedTime(OutInQuart, t);
         public static float OutInQuart(float time, float start, float end) => TimeRange(OutInQuart, time, start, end);
-
-        public static float OutInQuart(float t, float b, float c, float d)
-        {
-            if (t < d / 2)
-            {
-                return OutQuart(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuart((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static float OutInQuart(float t, float b, float c, float d) => OutIn(OutQuart, InQuart, t, b, c, d);
 
         public static double OutInQuart(double t) => NormalizedTime(OutInQuart, t);
         public static double OutInQuart(double time, double start, double end) => TimeRange(OutInQuart, time, start, end);
-
-        public static double OutInQuart(double t, double b, double c, double d)
-        {
-            if (t < d / 2)
-            {
-                return OutQuart(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuart((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static double OutInQuart(double t, double b, double c, double d) => OutIn(OutQuart, InQuart, t, b, c, d);
 
         // IN QUINTIC
 
@@ -475,35 +441,11 @@ namespace MoonTools.Core.Easing
 
         public static float OutInQuint(float t) => NormalizedTime(OutInQuint, t);
         public static float OutInQuint(float time, float start, float end) => TimeRange(OutInQuint, time, start, end);
-
-        public static float OutInQuint(float t, float b, float c, float d)
-        {
-            CheckTime(t, d);
-            if (t < d / 2)
-            {
-                return OutQuint(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuint((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static float OutInQuint(float t, float b, float c, float d) => OutIn(OutQuint, InQuint, t, b, c, d);
 
         public static double OutInQuint(double t) => NormalizedTime(OutInQuint, t);
         public static double OutInQuint(double time, double start, double end) => TimeRange(OutInQuint, time, start, end);
-
-        public static double OutInQuint(double t, double b, double c, double d)
-        {
-            CheckTime(t, d);
-            if (t < d / 2)
-            {
-                return OutQuint(t * 2, b, c / 2, d);
-            }
-            else
-            {
-                return InQuint((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
+        public static double OutInQuint(double t, double b, double c, double d) => OutIn(OutQuint, InQuint, t, b, c, d);
 
         // note: no float implementations because trig functions are double precision
 
@@ -544,17 +486,120 @@ namespace MoonTools.Core.Easing
 
         public static double OutInSine(double t) => NormalizedTime(OutInSine, t);
         public static double OutInSine(double time, double start, double end) => TimeRange(OutInSine, time, start, end);
+        public static double OutInSine(double t, double b, double c, double d) => OutIn(OutSine, InSine, t, b, c, d);
 
-        public static double OutInSine(double t, double b, double c, double d)
+        // IN EXPONENTIAL
+
+        public static double InExpo(double t) => NormalizedTime(InExpo, t);
+        public static double InExpo(double time, double start, double end) => TimeRange(InExpo, time, start, end);
+
+        public static double InExpo(double t, double b, double c, double d)
         {
-            if (t < d / 2)
+            CheckTime(t, d);
+            if (t == 0)
             {
-                return OutSine(t * 2, b, c / 2, d);
+                return b;
             }
             else
             {
-                return InSine((t * 2) - d, b + c / 2, c / 2, d);
+                return c * Math.Pow(2, 10 * ((t / d) - 1)) + b - c * 0.001;
             }
         }
+
+        // OUT EXPONENTIAL
+
+        public static double OutExpo(double t) => NormalizedTime(OutExpo, t);
+        public static double OutExpo(double time, double start, double end) => TimeRange(OutExpo, time, start, end);
+
+        public static double OutExpo(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            if (t == d)
+            {
+                return b + c;
+            }
+            else
+            {
+                return c * 1.001 * (-Math.Pow(2, -10 * t / d) + 1) + b;
+            }
+        }
+
+        // IN OUT EXPONENTIAL
+
+        public static double InOutExpo(double t) => NormalizedTime(InOutExpo, t);
+        public static double InOutExpo(double time, double start, double end) => TimeRange(InOutExpo, time, start, end);
+
+        public static double InOutExpo(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            if (t == 0) { return b; }
+            if (t == d) { return b + c; }
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return c / 2 * Math.Pow(2, 10 * (t - 1)) + b - c * 0.0005;
+            }
+            else
+            {
+                t = t - 1;
+                return c / 2 * 1.0005 * (-Math.Pow(2, -10 * t) + 2) + b;
+            }
+        }
+
+        // OUT IN EXPONENTIAL
+
+        public static double OutInExpo(double t) => NormalizedTime(OutInExpo, t);
+        public static double OutInExpo(double time, double start, double end) => TimeRange(OutInExpo, time, start, end);
+        public static double OutInExpo(double t, double b, double c, double d) => OutIn(OutExpo, InExpo, t, b, c, d);
+
+        // IN CIRCULAR
+
+        public static double InCirc(double t) => NormalizedTime(InCirc, t);
+        public static double InCirc(double time, double start, double end) => TimeRange(InCirc, time, start, end);
+
+        public static double InCirc(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d;
+            return -c * (Math.Sqrt(1 - (t * t)) - 1) + b;
+        }
+
+        // OUT CIRCULAR
+
+        public static double OutCirc(double t) => NormalizedTime(OutCirc, t);
+        public static double OutCirc(double time, double start, double end) => TimeRange(OutCirc, time, start, end);
+
+        public static double OutCirc(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d - 1;
+            return c * Math.Sqrt(1 - (t * t)) + b;
+        }
+
+        // IN OUT CIRCULAR
+
+        public static double InOutCirc(double t) => NormalizedTime(InOutCirc, t);
+        public static double InOutCirc(double time, double start, double end) => TimeRange(InOutCirc, time, start, end);
+
+        public static double InOutCirc(double t, double b, double c, double d)
+        {
+            CheckTime(t, d);
+            t = t / d * 2;
+            if (t < 1)
+            {
+                return -c / 2 * (Math.Sqrt(1 - (t * t)) - 1) + b;
+            }
+            else
+            {
+                t = t - 2;
+                return c / 2 * (Math.Sqrt(1 - (t * t)) + 1) + b;
+            }
+        }
+
+        // OUT IN CIRCULAR
+
+        public static double OutInCirc(double t) => NormalizedTime(OutInCirc, t);
+        public static double OutInCirc(double time, double start, double end) => TimeRange(OutInCirc, time, start, end);
+        public static double OutInCirc(double t, double b, double c, double d) => OutIn(OutCirc, InCirc, t, b, c, d);
     }
 }
