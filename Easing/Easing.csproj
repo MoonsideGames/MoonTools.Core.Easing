@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>.NET Core Easing Functions</Description>
     <PackageId>MoonTools.Core.Easing</PackageId>
