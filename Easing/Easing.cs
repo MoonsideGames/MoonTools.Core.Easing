@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoonTools.Core.Easing
+namespace MoonTools.Core
 {
     public static class Easing
     {
@@ -18,7 +18,7 @@ namespace MoonTools.Core.Easing
 
         // function transformations
         private static float NormalizedTime(Func<float, float, float, float, float> easingFunction, float t) => easingFunction(t, 0, 1, 1);
-        private static float TimeRange(Func<float, float> easingFunction, float time, float start, float end) => start + (end - start) * easingFunction((time - start) / (end - start));
+        private static float TimeRange(Func<float, float> easingFunction, float time, float start, float end) => start + ((end - start) * easingFunction((time - start) / (end - start)));
 
         private static float OutIn(Func<float, float, float, float, float> outFunc,
                             Func<float, float, float, float, float> inFunc,
@@ -33,12 +33,12 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return inFunc((t * 2) - d, b + c / 2, c / 2, d);
+                return inFunc((t * 2) - d, b + (c / 2), c / 2, d);
             }
         }
 
         private static double NormalizedTime(Func<double, double, double, double, double> easingFunction, double t) => easingFunction(t, 0, 1, 1);
-        private static double TimeRange(Func<double, double> easingFunction, double time, double start, double end) => start + (end - start) * easingFunction((time - start) / (end - start));
+        private static double TimeRange(Func<double, double> easingFunction, double time, double start, double end) => start + ((end - start) * easingFunction((time - start) / (end - start)));
 
         private static double OutIn(Func<double, double, double, double, double> outFunc,
                                     Func<double, double, double, double, double> inFunc,
@@ -53,7 +53,7 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return inFunc((t * 2) - d, b + c / 2, c / 2, d);
+                return inFunc((t * 2) - d, b + (c / 2), c / 2, d);
             }
         }
 
@@ -67,7 +67,7 @@ namespace MoonTools.Core.Easing
         public static float Linear(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            return c * t / d + b;
+            return (c * t / d) + b;
         }
 
         public static double Linear(double t) => NormalizedTime(Linear, t);
@@ -76,7 +76,7 @@ namespace MoonTools.Core.Easing
         public static double Linear(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            return c * t / d + b;
+            return (c * t / d) + b;
         }
 
         // IN QUAD
@@ -87,8 +87,8 @@ namespace MoonTools.Core.Easing
         public static float InQuad(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t) + b;
+            t /= d;
+            return (c * (t * t)) + b;
         }
 
         public static double InQuad(double t) => NormalizedTime(InQuad, t);
@@ -97,8 +97,8 @@ namespace MoonTools.Core.Easing
         public static double InQuad(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t) + b;
+            t /= d;
+            return (c * (t * t)) + b;
         }
 
         // OUT QUAD
@@ -109,8 +109,8 @@ namespace MoonTools.Core.Easing
         public static float OutQuad(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return -c * t * (t - 2) + b;
+            t /= d;
+            return (-c * t * (t - 2)) + b;
         }
 
         public static double OutQuad(double t) => NormalizedTime(OutQuad, t);
@@ -119,8 +119,8 @@ namespace MoonTools.Core.Easing
         public static double OutQuad(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return -c * t * (t - 2) + b;
+            t /= d;
+            return (-c * t * (t - 2)) + b;
         }
 
         // IN OUT QUAD
@@ -134,11 +134,11 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t) + b;
+                return (c / 2 * (t * t)) + b;
             }
             else
             {
-                return -c / 2 * ((t - 1) * (t - 3) - 1) + b;
+                return (-c / 2 * (((t - 1) * (t - 3)) - 1)) + b;
             }
         }
 
@@ -151,11 +151,11 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t) + b;
+                return (c / 2 * (t * t)) + b;
             }
             else
             {
-                return -c / 2 * ((t - 1) * (t - 3) - 1) + b;
+                return (-c / 2 * (((t - 1) * (t - 3)) - 1)) + b;
             }
         }
 
@@ -177,8 +177,8 @@ namespace MoonTools.Core.Easing
         public static float InCubic(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t)) + b;
         }
 
         public static double InCubic(double t) => NormalizedTime(InCubic, t);
@@ -187,8 +187,8 @@ namespace MoonTools.Core.Easing
         public static double InCubic(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t)) + b;
         }
 
         // OUT CUBIC
@@ -199,8 +199,8 @@ namespace MoonTools.Core.Easing
         public static float OutCubic(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * (t * t * t + 1) + b;
+            t = (t / d) - 1;
+            return (c * ((t * t * t) + 1)) + b;
         }
 
         public static double OutCubic(double t) => NormalizedTime(OutCubic, t);
@@ -209,8 +209,8 @@ namespace MoonTools.Core.Easing
         public static double OutCubic(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * (t * t * t + 1) + b;
+            t = (t / d) - 1;
+            return (c * ((t * t * t) + 1)) + b;
         }
 
         // IN OUT CUBIC
@@ -224,12 +224,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * t * t * t + b;
+                return (c / 2 * t * t * t) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * (t * t * t + 2) + b;
+                t -= 2;
+                return (c / 2 * ((t * t * t) + 2)) + b;
             }
         }
 
@@ -244,12 +244,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * t * t * t + b;
+                return (c / 2 * t * t * t) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * (t * t * t + 2) + b;
+                t -= 2;
+                return (c / 2 * ((t * t * t) + 2)) + b;
             }
         }
 
@@ -271,8 +271,8 @@ namespace MoonTools.Core.Easing
         public static float InQuart(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t * t)) + b;
         }
 
         public static double InQuart(double t) => NormalizedTime(InQuart, t);
@@ -281,8 +281,8 @@ namespace MoonTools.Core.Easing
         public static double InQuart(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t * t)) + b;
         }
 
         // OUT QUARTIC
@@ -293,8 +293,8 @@ namespace MoonTools.Core.Easing
         public static float OutQuart(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return -c * ((t * t * t * t) - 1) + b;
+            t = (t / d) - 1;
+            return (-c * ((t * t * t * t) - 1)) + b;
         }
 
         public static double OutQuart(double t) => NormalizedTime(OutQuart, t);
@@ -303,8 +303,8 @@ namespace MoonTools.Core.Easing
         public static double OutQuart(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return -c * ((t * t * t * t) - 1) + b;
+            t = (t / d) - 1;
+            return (-c * ((t * t * t * t) - 1)) + b;
         }
 
         // IN OUT QUARTIC
@@ -318,12 +318,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t * t * t) + b;
+                return (c / 2 * (t * t * t * t)) + b;
             }
             else
             {
-                t = t - 2;
-                return -c / 2 * ((t * t * t * t) - 2) + b;
+                t -= 2;
+                return (-c / 2 * ((t * t * t * t) - 2)) + b;
             }
         }
 
@@ -336,12 +336,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t * t * t) + b;
+                return (c / 2 * (t * t * t * t)) + b;
             }
             else
             {
-                t = t - 2;
-                return -c / 2 * ((t * t * t * t) - 2) + b;
+                t -= 2;
+                return (-c / 2 * ((t * t * t * t) - 2)) + b;
             }
         }
 
@@ -363,8 +363,8 @@ namespace MoonTools.Core.Easing
         public static float InQuint(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t * t * t)) + b;
         }
 
         public static double InQuint(double t) => NormalizedTime(InQuint, t);
@@ -373,8 +373,8 @@ namespace MoonTools.Core.Easing
         public static double InQuint(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * (t * t * t * t * t) + b;
+            t /= d;
+            return (c * (t * t * t * t * t)) + b;
         }
 
         // OUT QUINTIC
@@ -385,8 +385,8 @@ namespace MoonTools.Core.Easing
         public static float OutQuint(float t, float b, float c, float d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * ((t * t * t * t * t) + 1) + b;
+            t = (t / d) - 1;
+            return (c * ((t * t * t * t * t) + 1)) + b;
         }
 
         public static double OutQuint(double t) => NormalizedTime(OutQuint, t);
@@ -395,8 +395,8 @@ namespace MoonTools.Core.Easing
         public static double OutQuint(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * ((t * t * t * t * t) + 1) + b;
+            t = (t / d) - 1;
+            return (c * ((t * t * t * t * t) + 1)) + b;
         }
 
         // IN OUT QUINTIC
@@ -410,12 +410,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t * t * t * t) + b;
+                return (c / 2 * (t * t * t * t * t)) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * ((t * t * t * t * t) + 2) + b;
+                t -= 2;
+                return (c / 2 * ((t * t * t * t * t) + 2)) + b;
             }
         }
 
@@ -428,12 +428,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t * t * t * t) + b;
+                return (c / 2 * (t * t * t * t * t)) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * ((t * t * t * t * t) + 2) + b;
+                t -= 2;
+                return (c / 2 * ((t * t * t * t * t) + 2)) + b;
             }
         }
 
@@ -457,7 +457,7 @@ namespace MoonTools.Core.Easing
         public static double InSine(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            return -c * Math.Cos(t / d * (Math.PI / 2)) + c + b;
+            return (-c * Math.Cos(t / d * (Math.PI / 2))) + c + b;
         }
 
         // OUT SINE
@@ -468,7 +468,7 @@ namespace MoonTools.Core.Easing
         public static double OutSine(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            return c * Math.Sin(t / d * (Math.PI / 2)) + b;
+            return (c * Math.Sin(t / d * (Math.PI / 2))) + b;
         }
 
         // IN OUT SINE
@@ -479,7 +479,7 @@ namespace MoonTools.Core.Easing
         public static double InOutSine(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            return -c / 2 * (Math.Cos(Math.PI * t / d) - 1) + b;
+            return (-c / 2 * (Math.Cos(Math.PI * t / d) - 1)) + b;
         }
 
         // OUT IN SINE
@@ -502,7 +502,7 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return c * Math.Pow(2, 10 * ((t / d) - 1)) + b - c * 0.001;
+                return (c * Math.Pow(2, 10 * ((t / d) - 1))) + b - (c * 0.001);
             }
         }
 
@@ -520,7 +520,7 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return c * 1.001 * (-Math.Pow(2, -10 * t / d) + 1) + b;
+                return (c * 1.001 * (-Math.Pow(2, -10 * t / d) + 1)) + b;
             }
         }
 
@@ -537,12 +537,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * Math.Pow(2, 10 * (t - 1)) + b - c * 0.0005;
+                return (c / 2 * Math.Pow(2, 10 * (t - 1))) + b - (c * 0.0005);
             }
             else
             {
-                t = t - 1;
-                return c / 2 * 1.0005 * (-Math.Pow(2, -10 * t) + 2) + b;
+                t--;
+                return (c / 2 * 1.0005 * (-Math.Pow(2, -10 * t) + 2)) + b;
             }
         }
 
@@ -560,8 +560,8 @@ namespace MoonTools.Core.Easing
         public static double InCirc(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
-            return -c * (Math.Sqrt(1 - (t * t)) - 1) + b;
+            t /= d;
+            return (-c * (Math.Sqrt(1 - (t * t)) - 1)) + b;
         }
 
         // OUT CIRCULAR
@@ -572,8 +572,8 @@ namespace MoonTools.Core.Easing
         public static double OutCirc(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * Math.Sqrt(1 - (t * t)) + b;
+            t = (t / d) - 1;
+            return (c * Math.Sqrt(1 - (t * t))) + b;
         }
 
         // IN OUT CIRCULAR
@@ -587,12 +587,12 @@ namespace MoonTools.Core.Easing
             t = t / d * 2;
             if (t < 1)
             {
-                return -c / 2 * (Math.Sqrt(1 - (t * t)) - 1) + b;
+                return (-c / 2 * (Math.Sqrt(1 - (t * t)) - 1)) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * (Math.Sqrt(1 - (t * t)) + 1) + b;
+                t -= 2;
+                return (c / 2 * (Math.Sqrt(1 - (t * t)) + 1)) + b;
             }
         }
 
@@ -612,9 +612,9 @@ namespace MoonTools.Core.Easing
         public static double InElasticNormalized(double t, double a) => InElastic(t, 0, 1, 1, a);
         public static double InElasticNormalized(double t, double a, double p) => InElastic(t, 0, 1, 1, a, p);
 
-        public static double InElasticTimeRange(double time, double start, double end) => start + (end - start) * InElasticNormalized((time - start) / (end - start));
-        public static double InElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * InElasticNormalized((time - start) / (end - start), a);
-        public static double InElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * InElasticNormalized((time - start) / (end - start), a, p);
+        public static double InElasticTimeRange(double time, double start, double end) => start + ((end - start) * InElasticNormalized((time - start) / (end - start)));
+        public static double InElasticTimeRange(double time, double start, double end, double a) => start + ((end - start) * InElasticNormalized((time - start) / (end - start), a));
+        public static double InElasticTimeRange(double time, double start, double end, double a, double p) => start + ((end - start) * InElasticNormalized((time - start) / (end - start), a, p));
 
         public static double InElastic(double t, double b, double c, double d, double? a = null, double? p = null)
         {
@@ -622,7 +622,7 @@ namespace MoonTools.Core.Easing
 
             if (t == 0) { return b; }
 
-            t = t / d;
+            t /= d;
 
             if (t == 1) { return b + c; }
 
@@ -639,9 +639,9 @@ namespace MoonTools.Core.Easing
                 s = p.Value / (2 * Math.PI) * Math.Asin(c / a.Value);
             }
 
-            t = t - 1;
+            t--;
 
-            return -(a.Value * Math.Pow(2, 10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value)) + b;
+            return -(a.Value * Math.Pow(2, 10 * t) * Math.Sin(((t * d) - s) * (2 * Math.PI) / p.Value)) + b;
         }
 
         // OUT ELASTIC
@@ -650,9 +650,9 @@ namespace MoonTools.Core.Easing
         public static double OutElasticNormalized(double t, double a) => OutElastic(t, 0, 1, 1, a);
         public static double OutElasticNormalized(double t, double a, double p) => OutElastic(t, 0, 1, 1, a, p);
 
-        public static double OutElasticTimeRange(double time, double start, double end) => start + (end - start) * OutElasticNormalized((time - start) / (end - start));
-        public static double OutElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * OutElasticNormalized((time - start) / (end - start), a);
-        public static double OutElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * OutElasticNormalized((time - start) / (end - start), a, p);
+        public static double OutElasticTimeRange(double time, double start, double end) => start + ((end - start) * OutElasticNormalized((time - start) / (end - start)));
+        public static double OutElasticTimeRange(double time, double start, double end, double a) => start + ((end - start) * OutElasticNormalized((time - start) / (end - start), a));
+        public static double OutElasticTimeRange(double time, double start, double end, double a, double p) => start + ((end - start) * OutElasticNormalized((time - start) / (end - start), a, p));
 
         public static double OutElastic(double t, double b, double c, double d, double? a = null, double? p = null)
         {
@@ -660,7 +660,7 @@ namespace MoonTools.Core.Easing
 
             if (t == 0) { return b; }
 
-            t = t / d;
+            t /= d;
 
             if (t == 1) { return b + c; }
 
@@ -678,7 +678,7 @@ namespace MoonTools.Core.Easing
                 s = p.Value / (2 * Math.PI) * Math.Asin(c / a.Value);
             }
 
-            return a.Value * Math.Pow(2, -10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value) + c + b;
+            return (a.Value * Math.Pow(2, -10 * t) * Math.Sin(((t * d) - s) * (2 * Math.PI) / p.Value)) + c + b;
         }
 
         // IN OUT ELASTIC
@@ -687,9 +687,9 @@ namespace MoonTools.Core.Easing
         public static double InOutElasticNormalized(double t, double a) => InOutElastic(t, 0, 1, 1, a);
         public static double InOutElasticNormalized(double t, double a, double p) => InOutElastic(t, 0, 1, 1, a, p);
 
-        public static double InOutElasticTimeRange(double time, double start, double end) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start));
-        public static double InOutElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start), a);
-        public static double InOutElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * InOutElasticNormalized((time - start) / (end - start), a, p);
+        public static double InOutElasticTimeRange(double time, double start, double end) => start + ((end - start) * InOutElasticNormalized((time - start) / (end - start)));
+        public static double InOutElasticTimeRange(double time, double start, double end, double a) => start + ((end - start) * InOutElasticNormalized((time - start) / (end - start), a));
+        public static double InOutElasticTimeRange(double time, double start, double end, double a, double p) => start + ((end - start) * InOutElasticNormalized((time - start) / (end - start), a, p));
 
         public static double InOutElastic(double t, double b, double c, double d, double? a = null, double? p = null)
         {
@@ -718,13 +718,13 @@ namespace MoonTools.Core.Easing
 
             if (t < 1)
             {
-                t = t - 1;
-                return -0.5 * (a.Value * Math.Pow(2, 10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value)) + b;
+                t--;
+                return (-0.5 * (a.Value * Math.Pow(2, 10 * t) * Math.Sin(((t * d) - s) * (2 * Math.PI) / p.Value))) + b;
             }
             else
             {
-                t = t - 1;
-                return a.Value * Math.Pow(2, -10 * t) * Math.Sin((t * d - s) * (2 * Math.PI) / p.Value) * 0.5 + c + b;
+                t--;
+                return (a.Value * Math.Pow(2, -10 * t) * Math.Sin(((t * d) - s) * (2 * Math.PI) / p.Value) * 0.5) + c + b;
             }
         }
 
@@ -734,9 +734,9 @@ namespace MoonTools.Core.Easing
         public static double OutInElasticNormalized(double t, double a) => OutInElastic(t, 0, 1, 1, a);
         public static double OutInElasticNormalized(double t, double a, double p) => OutInElastic(t, 0, 1, 1, a, p);
 
-        public static double OutInElasticTimeRange(double time, double start, double end) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start));
-        public static double OutInElasticTimeRange(double time, double start, double end, double a) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start), a);
-        public static double OutInElasticTimeRange(double time, double start, double end, double a, double p) => start + (end - start) * OutInElasticNormalized((time - start) / (end - start), a, p);
+        public static double OutInElasticTimeRange(double time, double start, double end) => start + ((end - start) * OutInElasticNormalized((time - start) / (end - start)));
+        public static double OutInElasticTimeRange(double time, double start, double end, double a) => start + ((end - start) * OutInElasticNormalized((time - start) / (end - start), a));
+        public static double OutInElasticTimeRange(double time, double start, double end, double a, double p) => start + ((end - start) * OutInElasticNormalized((time - start) / (end - start), a, p));
 
         public static double OutInElastic(double t, double b, double c, double d, double? a = null, double? p = null)
         {
@@ -746,7 +746,7 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return InElastic((t * 2) - d, b + c / 2, c / 2, d, a, p);
+                return InElastic((t * 2) - d, b + (c / 2), c / 2, d, a, p);
             }
         }
 
@@ -757,50 +757,50 @@ namespace MoonTools.Core.Easing
 
         public static double InBackNormalized(double t) => InBack(t, 0, 1, 1);
         public static double InBackNormalized(double t, double s) => InBack(t, 0, 1, 1, s);
-        public static double InBackTimeRange(double time, double start, double end) => start + (end - start) * InBackNormalized((time - start) / (end - start));
-        public static double InBackTimeRange(double time, double start, double end, double s) => start + (end - start) * InBackNormalized((time - start) / (end - start), s);
+        public static double InBackTimeRange(double time, double start, double end) => start + ((end - start) * InBackNormalized((time - start) / (end - start)));
+        public static double InBackTimeRange(double time, double start, double end, double s) => start + ((end - start) * InBackNormalized((time - start) / (end - start), s));
 
         public static double InBack(double t, double b, double c, double d, double s = 1.70158)
         {
             CheckTime(t, d);
-            t = t / d;
-            return c * t * t * ((s + 1) * t - s) + b;
+            t /= d;
+            return (c * t * t * (((s + 1) * t) - s)) + b;
         }
 
         // OUT BACK
 
         public static double OutBackNormalized(double t) => OutBack(t, 0, 1, 1);
         public static double OutBackNormalized(double t, double s) => OutBack(t, 0, 1, 1, s);
-        public static double OutBackTimeRange(double time, double start, double end) => start + (end - start) * OutBackNormalized((time - start) / (end - start));
-        public static double OutBackTimeRange(double time, double start, double end, double s) => start + (end - start) * OutBackNormalized((time - start) / (end - start), s);
+        public static double OutBackTimeRange(double time, double start, double end) => start + ((end - start) * OutBackNormalized((time - start) / (end - start)));
+        public static double OutBackTimeRange(double time, double start, double end, double s) => start + ((end - start) * OutBackNormalized((time - start) / (end - start), s));
 
         public static double OutBack(double t, double b, double c, double d, double s = 1.70158)
         {
             CheckTime(t, d);
-            t = t / d - 1;
-            return c * (t * t * ((s + 1) * t + s) + 1) + b;
+            t = (t / d) - 1;
+            return (c * ((t * t * (((s + 1) * t) + s)) + 1)) + b;
         }
 
         // IN OUT BACK
 
         public static double InOutBackNormalized(double t) => InOutBack(t, 0, 1, 1);
         public static double InOutBackNormalized(double t, double s) => InOutBack(t, 0, 1, 1, s);
-        public static double InOutBackTimeRange(double time, double start, double end) => start + (end - start) * InOutBackNormalized((time - start) / (end - start));
-        public static double InOutBackTimeRange(double time, double start, double end, double s) => start + (end - start) * InOutBackNormalized((time - start) / (end - start), s);
+        public static double InOutBackTimeRange(double time, double start, double end) => start + ((end - start) * InOutBackNormalized((time - start) / (end - start)));
+        public static double InOutBackTimeRange(double time, double start, double end, double s) => start + ((end - start) * InOutBackNormalized((time - start) / (end - start), s));
 
         public static double InOutBack(double t, double b, double c, double d, double s = 1.70158)
         {
             CheckTime(t, d);
-            s = s * 1.525;
+            s *= 1.525;
             t = t / d * 2;
             if (t < 1)
             {
-                return c / 2 * (t * t * ((s + 1) * t - s)) + b;
+                return (c / 2 * (t * t * (((s + 1) * t) - s))) + b;
             }
             else
             {
-                t = t - 2;
-                return c / 2 * (t * t * ((s + 1) * t + s) + 2) + b;
+                t -= 2;
+                return (c / 2 * ((t * t * (((s + 1) * t) + s)) + 2)) + b;
             }
         }
 
@@ -808,8 +808,8 @@ namespace MoonTools.Core.Easing
 
         public static double OutInBackNormalized(double t) => OutInBack(t, 0, 1, 1);
         public static double OutInBackNormalized(double t, double s) => OutInBack(t, 0, 1, 1, s);
-        public static double OutInBackTimeRange(double time, double start, double end) => start + (end - start) * OutInBackNormalized((time - start) / (end - start));
-        public static double OutInBackTimeRange(double time, double start, double end, double s) => start + (end - start) * OutInBackNormalized((time - start) / (end - start), s);
+        public static double OutInBackTimeRange(double time, double start, double end) => start + ((end - start) * OutInBackNormalized((time - start) / (end - start)));
+        public static double OutInBackTimeRange(double time, double start, double end, double s) => start + ((end - start) * OutInBackNormalized((time - start) / (end - start), s));
 
         public static double OutInBack(double t, double b, double c, double d, double s = 1.70158)
         {
@@ -819,7 +819,7 @@ namespace MoonTools.Core.Easing
             }
             else
             {
-                return InBack((t * 2) - d, b + c / 2, c / 2, d, s);
+                return InBack((t * 2) - d, b + (c / 2), c / 2, d, s);
             }
         }
 
@@ -831,25 +831,25 @@ namespace MoonTools.Core.Easing
         public static double OutBounce(double t, double b, double c, double d)
         {
             CheckTime(t, d);
-            t = t / d;
+            t /= d;
             if (t < 1 / 2.75)
             {
-                return c * (7.5625 * t * t) + b;
+                return (c * (7.5625 * t * t)) + b;
             }
             else if (t < 2 / 2.75)
             {
-                t = t - (1.5 / 2.75);
-                return c * (7.5625 * t * t + 0.75) + b;
+                t -= (1.5 / 2.75);
+                return (c * ((7.5625 * t * t) + 0.75)) + b;
             }
             else if (t < 2.5 / 2.75)
             {
-                t = t - (2.25 / 2.75);
-                return c * (7.5625 * t * t + 0.9375) + b;
+                t -= (2.25 / 2.75);
+                return (c * ((7.5625 * t * t) + 0.9375)) + b;
             }
             else
             {
-                t = t - (2.625 / 2.75);
-                return c * (7.5625 * t * t + 0.984375) + b;
+                t -= (2.625 / 2.75);
+                return (c * ((7.5625 * t * t) + 0.984375)) + b;
             }
         }
 
@@ -874,11 +874,11 @@ namespace MoonTools.Core.Easing
             CheckTime(t, d);
             if (t < d / 2)
             {
-                return InBounce(t * 2, 0, c, d) * 0.5 + b;
+                return (InBounce(t * 2, 0, c, d) * 0.5) + b;
             }
             else
             {
-                return OutBounce(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b;
+                return (OutBounce((t * 2) - d, 0, c, d) * 0.5) + (c * 0.5) + b;
             }
         }
 

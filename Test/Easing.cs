@@ -1,12 +1,12 @@
 using NUnit.Framework;
 using FluentAssertions;
 
-using MoonTools.Core.Easing;
+using MoonTools.Core;
 using System;
 
 namespace Test
 {
-    public class EasingTests
+    public static class EasingTests
     {
         public static void CheckFloatArguments(Func<float, float> easingNormalizedFunction, Func<float, float, float, float> easingRangeFunction)
         {
